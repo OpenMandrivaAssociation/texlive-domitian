@@ -1,6 +1,6 @@
 Name:		texlive-domitian
 Version:	55286
-Release:	1
+Release:	2
 Summary:	Drop-in replacement for Palatino
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/domitian
