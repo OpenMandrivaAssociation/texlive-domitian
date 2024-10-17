@@ -3,7 +3,7 @@ Version:	55286
 Release:	2
 Summary:	Drop-in replacement for Palatino
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/domitian
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/domitian
 License:	lppl1.3c ofl other-free
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/domitian.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/domitian.doc.r%{version}.tar.xz
