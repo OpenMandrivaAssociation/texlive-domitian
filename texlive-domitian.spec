@@ -1,49 +1,29 @@
-Name:		texlive-domitian
-Version:	55286
-Release:	2
+%global tl_name domitian
+%global tl_revision 77682
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.0.1
+Release:	%{tl_revision}.1
 Summary:	Drop-in replacement for Palatino
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/domitian
+URL:		https://www.ctan.org/tex-archive/fonts/domitian
 License:	lppl1.3c ofl other-free
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/domitian.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/domitian.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/domitian.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/domitian.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The Domitian fonts are a free and open-source OpenType font
-family, based on the Palatino design by Hermann Zapf
-(1918-2015), as implemented in Palladio, the version
-distributed as part of URW's free Core 35 PostScript fonts
-(2.0). Domitian is meant as a drop-in replacement for Adobe's
-version of Palatino. It extends Palladio with small capitals,
-old-style figures and scientific inferiors. The metrics have
-been adjusted to more closely match Adobe Palatino, and hinting
-has been improved.
+The Domitian fonts are a free and open-source OpenType font family,
+based on the Palatino design by Hermann Zapf (1918-2015), as implemented
+in Palladio, the version distributed as part of URW's free Core 35
+PostScript fonts (2.0). Domitian is meant as a drop-in replacement for
+Adobe's version of Palatino. It extends Palladio with small capitals,
+old-style figures and scientific inferiors. The metrics have been
+adjusted to more closely match Adobe Palatino, and hinting has been
+improved.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/latex/domitian
-%{_texmfdistdir}/fonts/vf/public/domitian
-%{_texmfdistdir}/fonts/type1/public/domitian
-%{_texmfdistdir}/fonts/tfm/public/domitian
-%{_texmfdistdir}/fonts/opentype/public/domitian
-%{_texmfdistdir}/fonts/map/dvips/domitian
-%{_texmfdistdir}/fonts/enc/dvips/domitian
-%doc %{_texmfdistdir}/doc/fonts/domitian
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
