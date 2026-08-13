@@ -1,9 +1,10 @@
 %global tl_name domitian
 %global tl_revision 77682
+%global tl_version 1.0.1
 
 Name:		texlive-%{tl_name}
 Epoch:		1
-Version:	1.0.1
+Version:	%{tl_version}
 Release:	%{tl_revision}.1
 Summary:	Drop-in replacement for Palatino
 Group:		Publishing
@@ -13,7 +14,8 @@ Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/domitian.r%{tl_r
 Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/domitian.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
 BuildSystem:	texlive
-Provides:	texlive(%{tl_name}) = %{tl_revision}
+Requires:	texlive-tlpkg
+Provides:	texlive(%{tl_name}) = %{version}
 
 %description
 The Domitian fonts are a free and open-source OpenType font family,
@@ -25,3 +27,10 @@ old-style figures and scientific inferiors. The metrics have been
 adjusted to more closely match Adobe Palatino, and hinting has been
 improved.
 
+
+%install -a
+mkdir -p %{buildroot}%{_texmf_updmap_d}
+cat > %{buildroot}%{_texmf_updmap_d}/%{tl_name} <<'TL_DROPIN_EOF'
+# from domitian:
+Map Domitian.map
+TL_DROPIN_EOF
